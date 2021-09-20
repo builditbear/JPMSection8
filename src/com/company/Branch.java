@@ -3,8 +3,8 @@ package com.company;
 import java.util.ArrayList;
 
 public class Branch {
-    private final String name;
-    private final ArrayList<Customer> customers;
+    private String name;
+    private ArrayList<Customer> customers;
 
     public Branch(String name) {
         this.name = name;
@@ -19,7 +19,15 @@ public class Branch {
         return customers;
     }
 
+    // Returns true if a customer was added, and false if they were not
+    // due to a customer with the same name already existing at this branch.
     public boolean newCustomer(String customer, double initialTransaction) {
+        Customer c = findCustomer(customer);
+        if(c != null){
+            return false;
+        }
+        customers.add(new Customer(customer, initialTransaction));
+        return true;
 
     }
 
@@ -35,7 +43,7 @@ public class Branch {
     }
 
     // Return value of null indicates customer with given name does not exist at this branch.
-    public Customer findCustomer(String customer) {
+    private Customer findCustomer(String customer) {
         for (Customer c : customers) {
             if (c.getName().equals(customer)) {
                 return c;

@@ -3,12 +3,13 @@ package com.company;
 import java.util.ArrayList;
 
 public class Customer {
-    private final String name;
-    private final ArrayList<Double> transactions;
+    private String name;
+    private ArrayList<Double> transactions;
 
-    public Customer(String name) {
+    public Customer(String name, double initialTransaction) {
         this.name = name;
         transactions = new ArrayList<Double>();
+        transactions.add(initialTransaction);
     }
 
     public String getName() {
